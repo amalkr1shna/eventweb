@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event registration system</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <header>
@@ -17,18 +18,14 @@
         </nav>
     </header>
     <section id="sec1">
+        {% for event in events %}
         <div class="main">
-            <h2>Full Stack web developement</h2>
-            <p>Location: FISAT</p>
-            <p>Date: 11 September 2023</p>
-            <a class="detail" href="./details.html">Details</a>
+            <h2>{{event.title}}</h2>
+            <p>Location: {{event.location}}</p>
+            <p>Date: {{event.date}}</p>
+            <a class="detail" href="{% url 'details' event.pk %}">Details</a>
         </div>
-        <div class="main">
-            <h2>Cyber Security</h2>
-            <p>Location: CET</p>
-            <p>Date: 20 September 2023</p>
-            <a class="detail" href="">Details</a>
-        </div>
+        {% endfor %}
     </section>
     <footer>
         <p>
